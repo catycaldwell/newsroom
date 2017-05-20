@@ -1,0 +1,22 @@
+{
+  "name": "newsroom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-route": "^1.6.4",
+    "body-parser": "^1.17.1",
+    "bootstrap-markdown": "^2.10.0",
+    "express": "^4.15.2",
+    "express-session": "^1.15.2",
+    "mongoose": "^4.9.2",
+    "semantic-ui": "^2.2.10"
+  }
+}
