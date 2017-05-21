@@ -25,11 +25,17 @@ app.controller('newsController', function($scope, newsFactory){
         $scope.newProfile = {};
     }
 
+    $scope.helpful = function (article) {
+        article.disabled = true;
+        var bacon = article._id;
+        newsFactory.helpful({bacon}, function (){
+        })
+    }
 
+    $scope.useless = function (article) {
+        article.disabled = true;
+        var bacon = article._id;
+        newsFactory.useless({bacon}, function (){
+        })
+    }
 })
-//   for (var i = 0; i < data.articles.length; i++) {
-//                 var bacon = data.articles[i].description;
-//                 if (bacon.includes("Trump")) {
-//                     console.log(data.articles[i])
-//                 }
-//             }

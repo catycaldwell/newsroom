@@ -1,11 +1,16 @@
 app.factory('newsFactory', function($http, $location, $route){
     var factory = {};
 
-    factory.index = function(callback){
-        $http.get('/index').then(function(output){
-            polls = output.data;
-            callback(polls);
-        })
+    factory.helpful = function(article, callback){
+        $http.post('/helpful', article).then(function(res){
+            callback(res);
+        });
+    }
+
+    factory.useless = function(article, callback){
+        $http.post('/useless', article).then(function(res){
+            callback(res);
+        });
     }
 
     factory.addProfile = function(profile){
@@ -54,18 +59,6 @@ app.factory('newsFactory', function($http, $location, $route){
             console.log("your api call didnt work");
         })   
     }
-
-
-    // factory.getPoll = function(id, callback){
-    //     $http.get('/poll/' + id).then(function(res) {
-    //         if (!res.data.error) {
-    //             poll = res.data;
-    //         }
-    //         if (typeof(callback) === 'function') {
-    //             callback(poll);
-    //         }
-    //     });
-    // }
 
     // factory.delete = function(id, callback) {
     //     $http.delete('/poll/' + id).then(function(res) {

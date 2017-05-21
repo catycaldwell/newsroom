@@ -46,6 +46,12 @@ module.exports = function(app) {
 	app.post('/user/create', function( req, res) {
 		tags.createUser(req, res);
 	});
+	app.post('/helpful', function( req, res) {
+		articles.helpful(req, res);
+	});
+	app.post('/useless', function( req, res) {
+		articles.useless(req, res);
+	});
 	
 	
 	// ARTICLE ROUTES

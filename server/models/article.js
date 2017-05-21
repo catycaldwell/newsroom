@@ -5,6 +5,8 @@ var mongoose = require('mongoose');
 
 var ArticleSchema = new mongoose.Schema({
 	title: { type: String, required: true, trim: true},
+	score: {type: Number, default: 0},
+	feedback: {type:Number, default: 0},
 	author: { type: String, trim: true }, // "Al Jazeera"
 	description: { type: String, trim: true }, // "The first day of Ramadan fasting will be confirmed on Friday."
 	publishedAt: { type: Date}, // "2017-05-21T06:54:53Z"

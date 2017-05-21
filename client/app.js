@@ -24,7 +24,15 @@ app.config(function($routeProvider) {
         templateUrl: 'partials/add.html',
         controller: 'usersController'
     })
+    .when('/landing', {
+        templateUrl: 'partials/landing.html',
+        controller: 'usersController'
+    })
+    .when('/survey', {
+        templateUrl: 'partials/survey.html',
+        controller: 'usersController'
+    })
     .otherwise({
         redirectTo: 'partials/login.html'
-    });
+    })
 })
