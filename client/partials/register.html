@@ -1,19 +1,55 @@
-<h1>Register Here!</h1>
-<p ng-repeat="error in errors track by $index">{{ error }}</p>
-<form action="" ng-submit="register(newUser)">
-    <label for="">First Name: <input type="text" ng-model="newUser.firstName"></label>
-    <br>
-    <label for="">Last Name: <input type="text" ng-model="newUser.lastName"></label>
-     <br>
-    <label for="">Email: <input type="email" ng-model="newUser.email"></label>
-     <br>
-    <label for="">Birthday: <input type="date" ng-model="newUser.birthday"></label>
-     <br>
-    <label for="">Password: <input type="text" ng-model="newUser.password"></label>
-     <br>
-    <label for="">Confirm Password: <input type="text" ng-model="newUser.passwordConfirm"></label>
-     <br>
-    <input type="submit">
-</form>
-
-<p>Already have an account? <a href="#!/login">Login here!</a></p>
+<script>
+    $('.negative')
+        .on('click', function() {
+            $(this)
+                .closest('.message')
+                .transition('fade')
+            ;
+        })
+    ;
+</script>
+<div class="ui raised padded text container segment">
+    <h2 class="ui blue image header">
+        <img src="images/fakelogo.jpg" class="image">
+        <div class="content">
+            <span style="color:green">Register</span> to build some briefs.
+        </div>
+    </h2>
+    <div class="ui negative message">
+        <i class="close icon"></i>
+        <div class="header">
+            Errors:
+        </div>
+        <p ng-repeat="error in errors track by $index">{{error}}</p>
+    </div>
+    <form class="ui medium form segment" ng-submit="register(newUser)">
+        <div class="field">
+            <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" ng-model="newUser.name" placeholder="Your Name">
+            </div>
+        </div>
+        <div class="field">
+            <div class="ui left icon input">
+                <i class="mail outline icon"></i>
+                <input type="email" ng-model="newUser.email" placeholder="Email">
+            </div>
+        </div>
+        <div class="field">
+            <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="password" ng-model="newUser.password" placeholder="Password">
+            </div>
+        </div>
+        <div class="field">
+            <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="password" ng-model="newUser.passwordConfirm" placeholder="Confirm Password">
+            </div>
+        </div>
+        <input type="submit" class="ui fluid blue button">
+    </form>
+    <div class="ui message">
+        Already have an account? <a href='#!/login'>Login</a>
+    </div>
+</div>

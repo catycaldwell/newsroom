@@ -1,10 +1,45 @@
-<h1>Login Here!</h1>
-<p ng-repeat="error in errors track by $index">{{ error }}</p>
-<form action="" ng-submit="login(user)">
-    <label for="">Email: <input type="email" ng-model="user.email"></label>
-     <br>
-    <label for="">Password: <input type="text" ng-model="user.password"></label>
-    <br>    
-    <input type="submit">
-</form>
-<p>Don't have an account? <a href="#!/register">Register here!</a></p>
+
+
+<script>
+    $('.negative')
+        .on('click', function() {
+            $(this)
+                .closest('.message')
+                .transition('fade')
+            ;
+        })
+    ;
+</script>
+<div class="ui raised padded text container segment">
+    <h2 class="ui blue image header">
+        <img src="images/fakelogo.jpg" class="image">
+        <div class="content">
+            <span style="color:green">Login</span> to build some briefs.
+        </div>
+    </h2>
+    <div class="ui negative message">
+        <i class="close icon"></i>
+        <div class="header">
+            Errors:
+        </div>
+        <p ng-repeat="error in errors track by $index">{{error}}</p>
+    </div>
+    <form class="ui medium form segment" ng-submit="login(newUser)">
+        <div class="field">
+            <div class="ui left icon input">
+                <i class="mail outline icon"></i>
+                <input type="email" ng-model="newUser.email" placeholder="Email">
+            </div>
+        </div>
+        <div class="field">
+            <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="password" ng-model="newUser.password" placeholder="Password">
+            </div>
+        </div>
+        <input type="submit" class="ui fluid blue button">
+    </form>
+    <div class="ui message">
+        Dont have an account? <a href='#!/register'>Go Register</a>
+    </div>
+</div>

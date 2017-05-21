@@ -6,15 +6,13 @@ var bcrypt = require('bcryptjs');
 module.exports = (function () {
     return {
         register: function (req, res) {
+            console.log(req.body);
             var user = new User({
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
+                name: req.body.name,
                 email: req.body.email,
-                birthday: req.body.birthday,
                 password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8)),
             })
             //make a check to make sure valid user with unique email has been created
-            console.log("What does user look like if the email validations fail?");
             console.log(user);
 
             user.save(function (err, data) {

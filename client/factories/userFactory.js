@@ -32,10 +32,11 @@
 //     return factory;
 // })
 
-app.factory("usersFactory", function ($http, $location) {
+app.factory("userFactory", function ($http, $location) {
     var factory = {};
 
     factory.register = function (user, callback) {
+        console.log(user, "in factory");
         $http.post('/register', user).then(function (output) {
             if (typeof (callback) == "function") {
                 callback(output);
