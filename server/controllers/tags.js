@@ -87,8 +87,9 @@ function adjList(tag1, tag2, tag3) {
         }
     };
     adjList.prototype.articleScore = function(tag1, tag2, tag3){
+		console.log(tag3, "is this the problem????");
         var score = 0;
-        var found;
+        var found = 0;
         for(var i = 0; i < this.edges[tag1].length; i++){
             if(this.edges[tag1][i].hasOwnProperty(tag2)){
                 score += this.edges[tag1][i][tag2];
@@ -96,9 +97,12 @@ function adjList(tag1, tag2, tag3) {
                 break;
             }
         }
+		console.log(found);
         if(found != 1){ //they didn't find the tag
             this.addVertex(tag2);
+			console.log("tag2 has been added!!!");
             this.addEdge(tag1, tag2);
+			console.log("edge added!");
             score += 10;
         }
         found = 0;
@@ -112,7 +116,9 @@ function adjList(tag1, tag2, tag3) {
         }
         if(found != 1){ //they didn't find the tag
             this.addVertex(tag3);
+			console.log("tag2 has been added!!!");
             this.addEdge(tag1, tag3);
+			console.log("edge added!");
             score += 10;
             found = 0;
         }
@@ -233,13 +239,38 @@ module.exports = {
 				}
 				var book = new Book(cust._id);
 				// Topic.find({_customer: req.params.id}).sort('rank').exec(function ( err, data ) {
-				var articles = ArticleModel.find({
-				}).exec(function(err,articles){
+				var articles = ArticleModel.find({}).exec(function(err,articles){
+
 						console.log(articles, "articles!!!");
-						cust.book = articles;
+	
 						cust.graph = new adjList(cust.tags[0].id, cust.tags[1].id, cust.tags[2].id); // three numbers that are associated with the tags
-						cust.numberOfTags = 3;
+						// console.log(cust.graph.vertices.length, "length");
+						
+						// console.log(articles[0].tag_list[0], "is this a tag???")
+						for(i = 0; i < articles.length; i++){
+							for(var j = 0; j< 3; j++){
+								if(typeof(articles[i].tag_list[j]) != 'number'
+								){
+									topic = new Topic({
+									_customer: cust._id,
+									title: articles[i].tag_list[j],
+									id: count,
+								})
+								articles[i].tag_list[j] = topic;
+								topic.save();
+								count++;
+								}
+							}
+						}
+						for(i = 0; i < articles.length; i++){
+							articles[i].score = cust.graph.articleScore(1, articles[0].tag_list[0].id, articles[0].tag_list[1].id);
+						}	
+						console.log(articles[0].score, "score!!!!!!!!!!!!");
+						// console.log(articles[0].tag_list[0]);
 						console.log(cust.graph, "graph?????");
+						cust.book = articles;
+						console.log(cust.book, "BOOOOOOOOOOOOOOOOOOK!!")
+						cust.numberOfTags = count;
 						console.log(cust);
 						cust.save( function(e, c){
 							if(e)
@@ -247,8 +278,7 @@ module.exports = {
 								console.log("huh?", e.message)
 							}
 							var successMsg = "Whatever floats your bacon";
-							console.log(c);
-							console.log(successMsg);
+							// console.log(c);
 							res.json(c);
 						});
 						
