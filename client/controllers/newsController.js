@@ -1,4 +1,4 @@
-app.controller('newsController', function($scope, newsFactory){
+app.controller('newsController', function($scope, $location, newsFactory){
     $scope.articles;
 
 // this is a basic API response from a news source we can use for dummy data for formatting. 
@@ -21,7 +21,12 @@ app.controller('newsController', function($scope, newsFactory){
     });
 
     $scope.addProfile = function () {
-        newsFactory.addProfile($scope.newProfile);
+        newsFactory.addProfile($scope.newProfile, function(data){
+            console.log(data, "this is what we got back from the factory")
+            console.log(data.book, "book back in controller!!");
+            $scope.articles = data.book;
+            $location.url('/brief');
+        });
         $scope.newProfile = {};
     }
 

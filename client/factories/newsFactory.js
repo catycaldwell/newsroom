@@ -8,14 +8,16 @@ app.factory('newsFactory', function($http, $location, $route){
         })
     }
 
-    factory.addProfile = function(profile){
-        $http.post('/addProfile', profile).then(function(){
+    factory.addProfile = function(profile, cb){
+        $http.post('/addProfile', profile).then(function(data){
+            console.log(data.data, "this is back from the db! What do we see????");
+            tehBook = data.data;
             $location.url('/brief');
         })
     }
 
     factory.getNews = function(cb){
-		$http.get('/articles').then(function ( res ) {
+            $http.get('/articles').then(function ( res ) {
 			console.log("News from DB:", res);
 			cb(res);
 		});

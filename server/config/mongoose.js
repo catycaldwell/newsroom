@@ -2,6 +2,7 @@ var mongoose = require('mongoose'),
     path = require('path'),
     fs = require('fs'),
     models_path = path.join(__dirname, './../models');
+    mongoose.Promise = global.Promise;
 
 mongoose.connect('mongodb://localhost/stack_dojoflow');
 
