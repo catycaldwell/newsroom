@@ -1,0 +1,149 @@
+<script>
+    $('.bacon-sidebar').first()
+        .sidebar('attach events', '.toggle.button')
+    ;
+    $('.toggle.button')
+        .removeClass('disabled')
+    ;
+</script>
+
+<div class="ui container fluid" ng-controller="newsController">     
+    <div class="ui right vertical menu sidebar">
+        <div class="ui cards">
+            <div class="ui card">
+                <div class="content">
+                    <div class="header">
+                        Add your own link:
+                    </div>
+                    <form class="description">
+                       <input type="text" placeholder="Link here"</input>
+                       <input type="submit">
+                    </form>
+                </div>
+            </div>
+            <div class="ui card">
+                <div class="content">
+                    <div class="header">
+                        China crippled CIA by killing US sources, says New York Times
+                    </div>
+                    <div class="description">
+                        Up to 20 US informants were killed or imprisoned in China between 2010-12, says the New York Times.
+                    </div>
+                </div>
+                <div class="ui bottom attached button">
+                    <i class="add icon"></i>
+                    Add Article to Brief
+                </div>
+            </div>
+            <div class="ui card">
+                <div class="content">
+                    <div class="header">
+                        China crippled CIA by killing US sources, says New York Times
+                    </div>
+                    <div class="description">
+                        Up to 20 US informants were killed or imprisoned in China between 2010-12, says the New York Times.
+                    </div>
+                </div>
+                <div class="ui bottom attached button">
+                    <i class="add icon"></i>
+                    Add Article to Brief
+                </div>
+            </div>
+            <div class="ui card">
+                <div class="content">
+                    <div class="header">
+                        China crippled CIA by killing US sources, says New York Times
+                    </div>
+                    <div class="description">
+                        Up to 20 US informants were killed or imprisoned in China between 2010-12, says the New York Times.
+                    </div>
+                </div>
+                <div class="ui bottom attached button">
+                    <i class="add icon"></i>
+                    Add Article to Brief
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pusher">
+        <div class="ui segment">
+            <div class="ui four cards">
+                <div class="green card">
+                    <div class="content">
+                        <div class="header">
+                            Mission Director; Syriah
+                        </div>
+                        <div class="image">
+                            <i class="massive book icon"></i>
+                        </div>
+                    </div>
+                </div>
+                 <div class="green card">
+                    <div class="content center">
+                        <div class="header">
+                            Mission Director; Syriah
+                        </div>
+                        <div class="image">
+                            <i class="massive book icon"></i>
+                        </div>
+                    </div>
+                </div>
+                 <div class="green card">
+                    <div class="content center">
+                        <div class="header">
+                            Mission Director; Syriah
+                        </div>
+                        <div class="image">
+                            <i class="massive book icon"></i>
+                        </div>
+                    </div>
+                </div>
+                 <div class="green card">
+                    <div class="content center">
+                        <div class="header">
+                            Mission Director; Syriah
+                        </div>
+                        <div class="image">
+                            <i class="massive book icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui segment two column stackable grid" ng-repeat="article in articles">
+            <div class="ten wide column">
+                <div class="content">
+                    <h4 class="header">{{article.title}}</h4>
+                    <p class="description">{{article.description}}</p>
+                    <div class="header">
+                        <a href="{{article.url}}">Read More</a>
+                    </div>
+                </div>
+                <div class="ui tag labels">
+                    <a class="ui green label">
+                        Potato
+                    </a>
+                    <a class="ui green label">
+                        Cat
+                    </a>
+                    <a class="ui green label">
+                        Kitty
+                    </a>
+                    <a class="ui green label">
+                        Hairball
+                    </a>
+                    <a class="ui green label">
+                        Bacon
+                    </a>
+                </div>
+                <i class="huge icons">
+                    <a href="#"><i class="line chart icon"></i></a>
+                    <a href="#"><i class="talk outline icon"></i></a>
+                </i>
+            </div>
+            <div class="six wide column">
+                <img class="ui fluid image" src="{{article.urlToImage}}"</img>
+            </div>
+        </div>
+    </div>
+</div>

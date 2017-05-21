@@ -16,6 +16,10 @@ app.config(function($routeProvider) {
         templateUrl: 'partials/dash.html',
         controller: 'usersController'
     })
+    .when('/brief', {
+        templateUrl: 'partials/brief.html',
+        controller: 'usersController'
+    })
     .otherwise({
         redirectTo: 'partials/login.html'
     });
