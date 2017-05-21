@@ -16,7 +16,7 @@ var Customer = mongoose.model('Customer', CustomerSchema);
 
 var TopicSchema = new mongoose.Schema({
 	_customer: { type: mongoose.Schema.ObjectId, ref:"Customer"},
-	title: { type: String, required: true, minlength: 3, trim: true },
+	title: { type: String, required: true, minlength: 1, trim: true },
 	rank: { type: Number, default: 1 },
 	id: {type: Number}
 }, { timestamps: true });
