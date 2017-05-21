@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+<head>
+    <meta charset="utf-8">
+    <title>Welcome to Curate!</title>
+
+    <!-- Semantic-ui -->
+    <link rel='stylesheet' href="semantic-ui/dist/semantic.css">
+    <!-- <link rel='stylesheet' href="bootstrap-social/bootstrap-social.css"> -->
+
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous"></script>
+</head>
+
+<body>
+<div class="container">
+    <h1>Test yo tags yo</h1>
+    <section id="testTagIndex">
+        <h3>Customer 1's scope</h3>
+
+    </section>
+
+    <form action="/user/592115d3c8616e61954599f3/graph/add" method="post" enctype="application/json">
+        <fieldset>
+            <legend>Add to Tag Graph:</legend>
+            <p>Creates a new tag and it's relationship in the TagGraph table</p>
+            Topic: <input name="topic" type="text"><br>
+            Child: <input name="child" type="text"><br>
+            Burton: <input name="cost" type="number" value="1" step="1">
+            <input type="submit">
+        </fieldset>
+    </form>
+
+    <form action="/user/592115d3c8616e61954599f3/topic/add" method="post" enctype="application/json">
+        <fieldset>
+            <legend>Add to Topic to User 592115d3c8616e61954599f3:</legend>
+            <p>Creates a new topic (top level tag) for the user</p>
+            title: <input name="title" type="text"><br>
+            rank: <input name="rank" type="number" value="1" step="1">
+            <input type="submit">
+        </fieldset>
+    </form>
+
+    <form action="/user/create" method="post">
+        <fieldset>
+            <legend>Create User:</legend>
+            <p>Creates a new tag and it's relationship in the TagGraph table</p>
+            Title: <input type="text" name="title"><br>
+            <input type="submit">
+        </fieldset>
+    </form>
+
+    <code>
+    var data = {"title":"El Presidente"}
+    $.ajax({
+    url: "/user/create",
+    type: "POST",
+    dataType : "json",
+    contentType: "application/json; charset=utf-8",
+    data : JSON.stringify(data),
+    success : function(result) {
+    console.log(result); // result is an object which is created from the returned JSON
+    },
+    });
+    </code>
+</div>
+
+<script>
+    $("form").submit( function ( e ) {
+		event.preventDefault();
+		var data = $(this).serializeArray().reduce(function(obj, item) {
+			obj[item.name] = item.value;
+			return obj;
+		}, {});
+		$.ajax({
+			url: $(this).attr('action'),
+			type: "POST",
+			dataType : "json",
+			contentType: "application/json; charset=utf-8",
+			data : JSON.stringify(data),
+			success : function(result) {
+				console.log(result); // result is an object which is created from the returned JSON
+			},
+		});
+	});
+</script>
+
+</body>
+
+</html>
