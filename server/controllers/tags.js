@@ -233,7 +233,7 @@ module.exports = {
 				}
 				var book = new Book(cust._id);
 				// Topic.find({_customer: req.params.id}).sort('rank').exec(function ( err, data ) {
-				var articles = ArticleModel.find({title:"Global shortage of penicillin: Reasons and consequences"
+				var articles = ArticleModel.find({
 				}).exec(function(err,articles){
 						console.log(articles, "articles!!!");
 						cust.book = articles;

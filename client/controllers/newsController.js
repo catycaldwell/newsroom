@@ -13,10 +13,8 @@ app.controller('newsController', function($scope, $location, newsFactory){
             $scope.articles = articles;
         }); 
     };
-    dat_news();
-    var dis_news = newsFactory.getNewsTest(function(response) {
 
-    });
+    dat_news();
 
     $scope.addProfile = function () {
         newsFactory.addProfile($scope.newProfile, function(data){

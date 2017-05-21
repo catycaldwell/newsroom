@@ -41,7 +41,7 @@ app.controller("usersController", ["$scope", "$location", "userFactory", functio
                     }
                     else {
                         $scope.newUser = {};
-                        $location.path('/dash');
+                        $location.path('/brief');
                     }
                 })
             }
@@ -58,7 +58,7 @@ app.controller("usersController", ["$scope", "$location", "userFactory", functio
                     $scope.errors.push("Incorrect login info");
                 }
                 else {
-                    $location.url('/dash');
+                    $location.url('/brief');
                 }
             })
         }
