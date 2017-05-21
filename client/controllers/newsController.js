@@ -1,5 +1,4 @@
 app.controller('newsController', function($scope, newsFactory){
-    $scope.burton = "YES SIRE";
     $scope.articles;
 
 // this is a basic API response from a news source we can use for dummy data for formatting. 
@@ -7,16 +6,14 @@ app.controller('newsController', function($scope, newsFactory){
         $scope.burton = "no mam";
         var articles = [];
             newsFactory.getNewsFromAPI(function(response) {
-            $scope.burton = "this is test copy";
-            if( response.error ) {
-                console.log(error)
-            } else {
-                articles = response.articles;
-            }
-            console.log(articles)
-            $scope.articles = articles;
-            console.log($scope.articles, "are these the articles from the factory?")
-        });
+                if( response.error ) {
+                    console.log(error)
+                } else {
+                    articles = response.articles;
+                }
+                $scope.articles = articles;
+                console.log($scope.articles, "are these the articles from the factory?")
+            });
         
     };
     dat_news();

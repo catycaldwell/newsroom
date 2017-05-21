@@ -14,17 +14,23 @@ app.factory('newsFactory', function($http, $location, $route){
         })
     }
 
-    factory.getNewsFromAPI = function(callback) {
-        fetch('https://newsapi.org/v1/articles?source=al-jazeera-english&sortBy=latest&apiKey=13908db4e0c744b59516ee5bda85900f') 
-        .then((response) => response.json())
-        .then(function(data) {
-            // if certain tag constraints are met, add specific articles to our database
-            callback(data)
-        })
-        .catch(function(error) {
-            console.log("your api call didnt work");
-        })   
-    }
+    factory.getNewsFromAPI = function(cb){
+		$http.get('https://newsapi.org/v1/articles?source=al-jazeera-english&sortBy=latest&apiKey=13908db4e0c744b59516ee5bda85900f').then(function ( res ) {
+			console.log("News API:", res.data);
+			cb(res.data);
+		});
+    };
+    // factory.getNewsFromAPI = function(callback) {
+    //     fetch('https://newsapi.org/v1/articles?source=al-jazeera-english&sortBy=latest&apiKey=13908db4e0c744b59516ee5bda85900f')
+    //     .then((response) => response.json())
+    //     .then(function(data) {
+    //         // if certain tag constraints are met, add specific articles to our database
+    //         callback(data)
+    //     })
+    //     .catch(function(error) {
+    //         console.log("your api call didnt work");
+    //     })
+    // };
 
     factory.getNewsTest = function(callback) {
         fetch('https://newsapi.org/v1/articles?source=al-jazeera-english&sortBy=latest&apiKey=13908db4e0c744b59516ee5bda85900f')
