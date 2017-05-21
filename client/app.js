@@ -4,32 +4,16 @@ app.config(function($routeProvider) {
     .when('/', {
         templateUrl: 'partials/home.html',
     })
-    // .when('/dash', {
-    //     templateUrl: 'partials/dashboard.html',
-    //     controller: 'questionController'
-    // })
-    // .when('/question/:id', {
-    //     templateUrl: 'partials/question.html',
-    //     controller: 'questionController'
-    // })
-    // .when('/add_question',{
-    //     templateUrl: 'partials/add.html',
-    //     controller: 'questionController'
-    // })
-    // .when('/topic/:topic', {
-    //     templateUrl: 'partials/topic.html',
-    //     controller: 'questionController'
-    // })
-    // .when('/user/:userid', {
-    //     templateUrl: 'partials/user.html',
-    //     controller: 'userController'
-    // })
-    // .when('/easter', {
-    //     templateUrl: 'partials/easter.html',
-    //     controller: 'questionController'
-    // })
+    .when('/login', {
+        templateUrl: 'partials/login.html',
+        controller: 'usersController'
+    })
+    .when('/dash', {
+        templateUrl: 'partials/dash.html',
+        controller: 'usersController'
+    })
     .otherwise({
-        redirectTo: 'partials/home.html'
+        redirectTo: 'partials/login.html'
     });
 })
 // .directive('navBar', function() {
