@@ -1,10 +1,12 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var UserSchema = new Schema ({
-    email: {type:String, required:true, minlength:3},
-    email: {type:String, required:true},
-    password: {type:String, required:true},
-}, {timestamp: true})
+var UserSchema = new Schema({
+    firstName: {type: String, required: true, minlength: 3},
+    lastName:{type: String, required: true, minlength: 3},
+    email:{type: String, match:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, required: true, unique: [true, "Email already in use."]},
+    password:{type: String, required: true},
+    birthday:{type: Date, required:true}
+},{timestamp:true})
 
-mongoose.model('User', UserSchema);
+mongoose.model("User", UserSchema)

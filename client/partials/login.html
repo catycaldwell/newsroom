@@ -1,14 +1,10 @@
-<div class='container'>
-    <h2>Login to Dojo Polls</h2>
-    <p>Please enter your name:</p>
-    <form ng-submit='login()' name='userForm'>
-        <input name='name' type='text' placeholder='First and Last' ng-model='user.name' minlength='3'required>
-        <input name='email' type='email' placeholder='Your email?' ng-model='user.email' required>
-        <input name='password' type='password' ng-model='user.password' required>
-        <input type='submit' value='login / signup'>
-    <form>
-    <div ng-messages="userForm.name.$error">
-        <p ng-message="minlength" class="bg-warning">Your name must be longer than 3 characters.</p>
-        <p ng-message="required" class="bg-danger">Please enter your email. <p>
-    </div>
-</div>
+<h1>Login Here!</h1>
+<p ng-repeat="error in errors track by $index">{{ error }}</p>
+<form action="" ng-submit="login(user)">
+    <label for="">Email: <input type="email" ng-model="user.email"></label>
+     <br>
+    <label for="">Password: <input type="text" ng-model="user.password"></label>
+    <br>    
+    <input type="submit">
+</form>
+<p>Don't have an account? <a href="#!/register">Register here!</a></p>

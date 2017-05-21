@@ -8,6 +8,10 @@ app.config(function($routeProvider) {
         templateUrl: 'partials/login.html',
         controller: 'usersController'
     })
+    .when('/register', {
+        templateUrl: 'partials/register.html',
+        controller: 'usersController'
+    })
     .when('/dash', {
         templateUrl: 'partials/dash.html',
         controller: 'usersController'
@@ -16,21 +20,3 @@ app.config(function($routeProvider) {
         redirectTo: 'partials/login.html'
     });
 })
-// .directive('navBar', function() {
-//     return {
-//         restrict: 'E',
-//         templateUrl: '/partials/navbar.html'
-//     };
-// })
-// .directive('enavBar', function() {
-//     return {
-//         restrict: 'E',
-//         templateUrl: '/partials/easternav.html'
-//     };
-// })
-// .directive('footer', function() {
-//     return {
-//         restrict: 'E',
-//         templateUrl: '/partials/footer.html'
-//     };
-// })

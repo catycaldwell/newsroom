@@ -1,0 +1,19 @@
+<h1>Register Here!</h1>
+<p ng-repeat="error in errors track by $index">{{ error }}</p>
+<form action="" ng-submit="register(newUser)">
+    <label for="">First Name: <input type="text" ng-model="newUser.firstName"></label>
+    <br>
+    <label for="">Last Name: <input type="text" ng-model="newUser.lastName"></label>
+     <br>
+    <label for="">Email: <input type="email" ng-model="newUser.email"></label>
+     <br>
+    <label for="">Birthday: <input type="date" ng-model="newUser.birthday"></label>
+     <br>
+    <label for="">Password: <input type="text" ng-model="newUser.password"></label>
+     <br>
+    <label for="">Confirm Password: <input type="text" ng-model="newUser.passwordConfirm"></label>
+     <br>
+    <input type="submit">
+</form>
+
+<p>Already have an account? <a href="#!/login">Login here!</a></p>
