@@ -4,7 +4,8 @@ var mongoose = require('mongoose');
 
 
 var CustomerSchema = new mongoose.Schema({
-	title: { type: String, required: true, trim: true}
+	title: { type: String, required: true, trim: true},
+	role: { type: String, required: true}
 }, { timestamps: true });
 
 var Customer = mongoose.model('Customer', CustomerSchema);

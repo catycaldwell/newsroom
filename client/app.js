@@ -20,6 +20,10 @@ app.config(function($routeProvider) {
         templateUrl: 'partials/brief.html',
         controller: 'usersController'
     })
+    .when('/add', {
+        templateUrl: 'partials/add.html',
+        controller: 'usersController'
+    })
     .otherwise({
         redirectTo: 'partials/login.html'
     });

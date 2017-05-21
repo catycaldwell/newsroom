@@ -69,6 +69,24 @@ module.exports = {
 			}
 		})
 	},
+	addProfile: function (req, res) {
+		var customer = new Customer({title:req.body.title, role:req.body.role});
+		customer.save(function(err, cust) {
+			if (err) {
+				res.json(err);
+			} else {
+				var arrOfNeeds = req.body.needs.split(',');
+				for (var i = 0; i < arrOfNeeds; i++) {
+					var topic = new Topic ({
+						_customer: cust._id,
+						title: arrOfNeeds[i]
+					})
+				}
+				var successMsg = "Whatever floats your bacon";
+				res.json(successMsg);
+			}
+		})
+	}
 	// vote: function(req,res){
 	// 	console.log("Received Vote request:", req.params, req.body);
 	// 	var OPT = "option" + req.body.data.option + "_vote";

@@ -23,6 +23,7 @@ module.exports = function(app) {
     app.post('/login', users.login);
     app.get('/check', users.check);
     app.get('/logout', users.logout);
+	app.post('/addProfile', tags.addProfile);
     
     // Tag routes
 	app.get('/user/:id/scope', function( req, res) {

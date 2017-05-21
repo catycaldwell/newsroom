@@ -1,0 +1,33 @@
+
+
+<script>
+    $('.negative')
+        .on('click', function() {
+            $(this)
+                .closest('.message')
+                .transition('fade')
+            ;
+        })
+    ;
+</script>
+<div class="ui raised padded text container segment" ng-controller="newsController">
+    <h2 class="ui blue image header">
+        Create a new Customer Profile
+    </h2>
+    <div class="ui negative message">
+        <i class="close icon"></i>
+        <p ng-repeat="error in errors track by $index">{{error}}</p>
+    </div>
+    <form class="ui medium form segment" ng-submit="addProfile(newProfile)">
+        <div class="field">
+            <input type="text" ng-model="newProfile.title" placeholder="Brief Title (Customer's Job Title)">
+        </div>
+        <div class="field">
+            <textarea ng-model="newProfile.role" placeholder="Short description of role and responsibilities"></textarea>
+        </div>
+        <div class="field">
+            <input type="text" ng-model="newProfile.needs" placeholder="Top 3 needs. Seperate with comma.">
+        </div>
+        <input type="submit" class="ui fluid blue button">
+    </form>
+</div>

@@ -8,9 +8,9 @@ app.factory('newsFactory', function($http, $location, $route){
         })
     }
 
-    factory.create = function(poll){
-        $http.post('/create', poll).then(function(){
-            $location.url('/dash');
+    factory.addProfile = function(profile){
+        $http.post('/addProfile', profile).then(function(){
+            $location.url('/brief');
         })
     }
 
