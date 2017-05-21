@@ -48,8 +48,8 @@ app.controller('newsController', function($scope, $location, newsFactory){
             }
         }
         bubble($scope.articles);
-        newsFactory.helpful({bacon}, function (){
-        })
+        // newsFactory.helpful({bacon}, function (){
+        // })
     }
 
     $scope.useless = function (article) {
