@@ -1,0 +1,60 @@
+        #mycarousel h2 {
+            display: inline-block;
+            padding: 10px;
+            background: #B9121B;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        #about_icons{
+            font-size: 6em;
+        }
+        .full-screen {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .carousel-caption{
+            bottom: 30%;
+        }
+
+        .well{
+            background: rgba(255, 255, 255, 0.7)
+        }
+
+        #about_spacer{
+            padding: 30px 40px;
+            border-left: solid black 1px;
+            border-right: solid black 1px;
+        }
+        #about_left{
+            padding: 30px 40px 30px 0px;
+        } 
+        #about_right{
+            padding: 30px 0px 30px 40px;
+        }
+
+        #myNav{
+            margin: 0px;
+        }
+        #about{
+            padding: 0px 40px;
+            margin: 40px 0px;
+        }
+        #books{
+            font-size: 8em;
+        }
+        #brief_room{
+            margin-top: 30px;
+            padding: 50px 0px;
+            background: url("../static/images/BriefRoomPic3.jpg") center;
+        }
+        #brief_room i{
+            font-size: 5em;
+        }
+        #brief_room .content{
+            font-size: 16pt;
+        }
+        #footer{
+            padding: 30px 0px;
+            background-color: lightslategray
+        }
