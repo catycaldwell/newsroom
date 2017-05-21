@@ -14,6 +14,13 @@ app.factory('newsFactory', function($http, $location, $route){
         })
     }
 
+    factory.getNews = function(cb){
+		$http.get('/articles').then(function ( res ) {
+			console.log("News from DB:", res);
+			cb(res);
+		});
+    };
+
     factory.getNewsFromAPI = function(cb){
 		$http.get('https://newsapi.org/v1/articles?source=al-jazeera-english&sortBy=latest&apiKey=13908db4e0c744b59516ee5bda85900f').then(function ( res ) {
 			console.log("News API:", res.data);

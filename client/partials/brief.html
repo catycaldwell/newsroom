@@ -1,12 +1,11 @@
-<script>
-    $('.bacon-sidebar').first()
-        .sidebar('attach events', '.toggle.button')
-    ;
-    $('.toggle.button')
-        .removeClass('disabled')
-    ;
-</script>
-
+<style>
+    .rmore {
+        font-size:25px;
+    }
+    .linkz {
+        margin-top:15px;
+    }
+</style>
 <div class="ui center aligned container" ng-controller="newsController">     
     <div class="ui right vertical sidebar">
         <div class="ui cards">
@@ -65,84 +64,76 @@
             </div>
         </div>
     </div>
-    <div class="pusher">
-        <div class="ui segment">
-            <div class="ui four cards">
-                <div class="green card">
+    <div class="pusher ui grid">
+        <div class="ui container twelve wide column">
+            <div class="ui segment">
+                <div class="ui four small cards">
+                    <div class="green card">
+                        <div class="content">
+                            <div class="header">
+                                Mission Director; Syriah
+                            </div>
+                            <div class="image">
+                                <i class="big book icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="green card">
+                        <div class="content center">
+                            <div class="header">
+                                Mission Director; Syriah
+                            </div>
+                            <div class="image">
+                                <i class="big book icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="green card">
+                        <div class="content center">
+                            <div class="header">
+                                North Korea Policy Group
+                            </div>
+                            <div class="image">
+                                <i class="big book icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="green card">
+                        <div class="content center">
+                            <div class="header">
+                                Centcom J2
+                            </div>
+                            <div class="image">
+                                <i class="big book icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h2>Director; Maritime Security Operations</h2>
+                <p> The United States Coast Guard Maritime Security Daily Brief. This report includes tactical information, port safety, and weather information about specific locations.</p>
+            </div>
+            <div class="ui segment two column stackable grid left aligned" ng-repeat="article in articles">
+                <div class="ten wide column">
                     <div class="content">
+                        <h4 class="header">{{article.title}}</h4>
+                        <p class="description">{{article.description}}</p>
                         <div class="header">
-                            Mission Director; Syriah
-                        </div>
-                        <div class="image">
-                            <i class="massive book icon"></i>
+                            <a class="rmore" href="{{article.url}}">Read More</a>
                         </div>
                     </div>
-                </div>
-                 <div class="green card">
-                    <div class="content center">
-                        <div class="header">
-                            Mission Director; Syriah
-                        </div>
-                        <div class="image">
-                            <i class="massive book icon"></i>
-                        </div>
+                    <div class="ui tag labels linkz">
+                        <a class="ui small green label" ng-repeat="tag in article.tag_list">
+                            {{tag}}
+                        </a>
                     </div>
+                    <i class="huge icons">
+                        <a href="#"><i class="line chart icon"></i></a>
+                        <a href="#"><i class="talk outline icon"></i></a>
+                    </i>
                 </div>
-                 <div class="green card">
-                    <div class="content center">
-                        <div class="header">
-                            Mission Director; Syriah
-                        </div>
-                        <div class="image">
-                            <i class="massive book icon"></i>
-                        </div>
-                    </div>
+                <div class="six wide column">
+                    <img class="ui fluid image" src="{{article.urlToImage}}"</img>
                 </div>
-                 <div class="green card">
-                    <div class="content center">
-                        <div class="header">
-                            Mission Director; Syriah
-                        </div>
-                        <div class="image">
-                            <i class="massive book icon"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="ui segment two column stackable grid" ng-repeat="article in articles">
-            <div class="ten wide column">
-                <div class="content">
-                    <h4 class="header">{{article.title}}</h4>
-                    <p class="description">{{article.description}}</p>
-                    <div class="header">
-                        <a href="{{article.url}}">Read More</a>
-                    </div>
-                </div>
-                <div class="ui tag labels">
-                    <a class="ui green label">
-                        Potato
-                    </a>
-                    <a class="ui green label">
-                        Cat
-                    </a>
-                    <a class="ui green label">
-                        Kitty
-                    </a>
-                    <a class="ui green label">
-                        Hairball
-                    </a>
-                    <a class="ui green label">
-                        Bacon
-                    </a>
-                </div>
-                <i class="huge icons">
-                    <a href="#"><i class="line chart icon"></i></a>
-                    <a href="#"><i class="talk outline icon"></i></a>
-                </i>
-            </div>
-            <div class="six wide column">
-                <img class="ui fluid image" src="{{article.urlToImage}}"</img>
             </div>
         </div>
     </div>
