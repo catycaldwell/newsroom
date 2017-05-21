@@ -17,6 +17,7 @@
 var mongoose = require('mongoose');
 var users = require('./../controllers/users.js');
 var tags = require('./../controllers/tags.js');
+var articles = require('./../controllers/articles.js');
 
 module.exports = function(app) {
     app.post('/register', users.register);
@@ -44,4 +45,15 @@ module.exports = function(app) {
 	app.post('/user/create', function( req, res) {
 		tags.createUser(req, res);
 	});
-}
+	
+	
+	// ARTICLE ROUTES
+	app.get('/articles', function ( req, res ) {
+		articles.index(req, res);
+	});
+	
+	app.get('/articles/import', function ( req, res ) {
+		articles.importArticles(req,res);
+	})
+	
+};

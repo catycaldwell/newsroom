@@ -19,6 +19,7 @@
     "express-session": "^1.15.2",
     "jquery": "^3.2.1",
     "mongoose": "^4.9.2",
+    "request": "^2.81.0",
     "semantic-ui": "^2.2.10"
   }
 }
