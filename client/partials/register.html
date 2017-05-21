@@ -8,14 +8,22 @@
         })
     ;
 </script>
-<div class="ui raised padded text container segment">
+<style>
+    .reg_title {
+        font-size:30px;
+    }
+    #reg_box {
+        width:45%
+    }
+</style>
+<div class="ui raised padded text container segment" id="reg_box">
     <h2 class="ui blue image header">
         <img src="images/fakelogo.jpg" class="image">
-        <div class="content">
-            <span style="color:green">Register</span> to build some briefs.
+        <div class="content reg_title">
+            <span style="color:green">Register</span> to use SmartBrief.
         </div>
     </h2>
-    <div class="ui negative message">
+    <div class="ui negative message" ng-if="errors.length > 0">
         <i class="close icon"></i>
         <div class="header">
             Errors:

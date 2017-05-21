@@ -10,11 +10,19 @@
         })
     ;
 </script>
-<div class="ui raised padded text container segment">
+<style>
+    .log_title {
+        font-size:30px;
+    }
+    #log_box {
+        width:45%
+    }
+</style>
+<div class="ui raised padded text container segment" id="log_box">
     <h2 class="ui blue image header">
         <img src="images/fakelogo.jpg" class="image">
-        <div class="content">
-            <span style="color:green">Login</span> to build some briefs.
+        <div class="content log_title">
+            <span style="color:green">Login</span> to use SmartBrief.
         </div>
     </h2>
     <div class="ui negative message" ng-show="errors.length > 0">
