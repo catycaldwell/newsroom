@@ -2,6 +2,147 @@ var mongoose = require('mongoose');
 var Customer = mongoose.model('Customer');
 var Topic = mongoose.model('Topic');
 var Graph = mongoose.model('Graph');
+var ArticleModel = mongoose.model('ArticleModel');
+
+
+Tag = function(tag, tagid){
+    this.tag = tag;
+    this.id = tagid;
+}
+
+Book = function(customerid){
+    this.articles = [];
+    this._customer = customerid;
+}
+
+Article = function(title, id, tag1, tag2, tag3){
+    this.id = id;
+    this.title = title;
+    this.tag = [tag1, tag2, tag3];
+    this.score = 0;
+    this.feedback;
+}
+
+function adjList(tag1, tag2, tag3) {
+    this.vertices = [];
+    this.edges = [];
+    this.numberOfEdges = 0;
+    this.addVertex(tag1);
+    this.addVertex(tag2);
+    this.addVertex(tag3);
+	this.addEdge(tag1, tag2);
+	this.addEdge(tag1, tag3);
+	this.addEdge(tag2, tag3);
+    }
+
+    adjList.prototype.addVertex = function(vertex) {
+    this.vertices.push(vertex);
+    this.edges[vertex] = [];
+    };
+    adjList.prototype.removeVertex = function(vertex) {
+    var index = this.vertices.indexOf(vertex);
+    if(~index) {
+        this.vertices.splice(index, 1);
+    }
+    while(this.edges[vertex].length) {
+        var adjacentVertex = this.edges[vertex].pop();
+        this.removeEdge(adjacentVertex, vertex);
+    }
+    };
+    adjList.prototype.addEdge = function(vertex1, vertex2) {
+        var obj1 = {};
+        obj1[vertex1] = 10;
+        var obj2 = {};
+        obj2[vertex2] = 10;
+        this.edges[vertex1].push(obj2);
+        this.edges[vertex2].push(obj1);
+        this.numberOfEdges++;
+    };
+    adjList.prototype.editEdge = function(vertex1, vertex2, vertex3, feedback){
+        for(var i = 0; i < this.edges[vertex1].length; i++){
+            if(this.edges[vertex1][i].hasOwnProperty(vertex2)){
+                this.edges[vertex1][i][vertex2] += feedback;
+                break;
+            }
+        }
+        for(i = 0; i < this.edges[vertex2].length; i++){
+            if(this.edges[vertex2][i].hasOwnProperty(vertex1)){
+                this.edges[vertex2][i][vertex1] += feedback;
+                break;
+            }
+        }
+         for(var i = 0; i < this.edges[vertex1].length; i++){
+            if(this.edges[vertex1][i].hasOwnProperty(vertex3)){
+                this.edges[vertex1][i][vertex3] += feedback;
+                break;
+            }
+        }
+        console.log(vertex3);
+        console.log(this.edges[vertex3]);               
+        for(i = 0; i < this.edges[vertex3].length; i++){
+            if(this.edges[vertex3][i].hasOwnProperty(vertex1)){
+                this.edges[vertex3][i][vertex1] += feedback;
+                break;
+            }
+        }
+    };
+    adjList.prototype.articleScore = function(tag1, tag2, tag3){
+        var score = 0;
+        var found;
+        for(var i = 0; i < this.edges[tag1].length; i++){
+            if(this.edges[tag1][i].hasOwnProperty(tag2)){
+                score += this.edges[tag1][i][tag2];
+                found = 1;
+                break;
+            }
+        }
+        if(found != 1){ //they didn't find the tag
+            this.addVertex(tag2);
+            this.addEdge(tag1, tag2);
+            score += 10;
+        }
+        found = 0;
+        for(i = 0; i < this.edges[tag1].length; i++){
+            if(this.edges[tag1][i].hasOwnProperty(tag3)){
+                // console.log(this.edges[tag1][i][tag3]);
+                score += this.edges[tag1][i][tag3];
+                found = 1;
+                break;
+            }
+        }
+        if(found != 1){ //they didn't find the tag
+            this.addVertex(tag3);
+            this.addEdge(tag1, tag3);
+            score += 10;
+            found = 0;
+        }
+        // console.log("score incoming");
+        // console.log(score);
+        return score;
+    }
+    adjList.prototype.removeEdge = function(vertex1, vertex2) {
+    var index1 = this.edges[vertex1] ? this.edges[vertex1].indexOf(vertex2) : -1;
+    var index2 = this.edges[vertex2] ? this.edges[vertex2].indexOf(vertex1) : -1;
+    if(~index1) {
+        this.edges[vertex1].splice(index1, 1);
+        this.numberOfEdges--;
+    }
+    if(~index2) {
+        this.edges[vertex2].splice(index2, 1);
+    }
+};
+
+// Customer = function(title, tag1, tag2, tag3){
+//     var id = 1;
+//     var tag1 = new Tag(tag1, 0, id);
+//     var tag2 = new Tag(tag2, 1, id);
+//     var tag3 = new Tag(tag3, 2, id);
+//     var tags = [tag1, tag2, tag3];
+//     this.title = title;
+//     this.book = [];
+//     this.tags = [tag1, tag2, tag3]; 
+//     this.graph = new Graph();
+// }
 
 module.exports = {
 	// Data.find( { $query: { user: req.user }, $orderby: { dateAdded: -1 } } function ( results ) {
@@ -73,17 +214,46 @@ module.exports = {
 		var customer = new Customer({title:req.body.title, role:req.body.role});
 		customer.save(function(err, cust) {
 			if (err) {
+				console.log("error!!!!");
+				console.log(err.message);
 				res.json(err);
 			} else {
 				var arrOfNeeds = req.body.needs.split(',');
-				for (var i = 0; i < arrOfNeeds; i++) {
+				var count = 0;
+				cust.tags = [];
+				for (var i = 0; i < arrOfNeeds.length; i++){
 					var topic = new Topic ({
 						_customer: cust._id,
-						title: arrOfNeeds[i]
+						title: arrOfNeeds[i],
+						id: count,
 					})
+					cust.tags.push(topic);
+					topic.save();
+					count++;
 				}
-				var successMsg = "Whatever floats your bacon";
-				res.json(successMsg);
+				var book = new Book(cust._id);
+				// Topic.find({_customer: req.params.id}).sort('rank').exec(function ( err, data ) {
+				var articles = ArticleModel.find({title:"Global shortage of penicillin: Reasons and consequences"
+				}).exec(function(err,articles){
+						console.log(articles, "articles!!!");
+						cust.book = articles;
+						cust.graph = new adjList(cust.tags[0].id, cust.tags[1].id, cust.tags[2].id); // three numbers that are associated with the tags
+						cust.numberOfTags = 3;
+						console.log(cust.graph, "graph?????");
+						console.log(cust);
+						cust.save( function(e, c){
+							if(e)
+							{
+								console.log("huh?", e.message)
+							}
+							var successMsg = "Whatever floats your bacon";
+							console.log(c);
+							console.log(successMsg);
+							res.json(c);
+						});
+						
+				});
+			
 			}
 		})
 	}

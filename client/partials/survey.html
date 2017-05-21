@@ -1,0 +1,38 @@
+<style>
+    .rmore {
+        font-size:25px;
+    }
+    .linkz {
+        margin-top:15px;
+    }
+</style>
+<div class="ui center aligned container" ng-controller="newsController">     
+    <div class="pusher ui grid">
+        <div class="ui container fourteen wide column">
+            <div class="ui segment">
+                <h1>Today's brief (5/21/17)</h1>
+                <h2>Survey Response</h2>
+                <p> Please choose which articles were or were </p>
+            </div>
+            <div class="ui segment three column stackable grid left aligned" ng-repeat="article in articles">
+                <div class="ten wide column">
+                    <div class="content">
+                        <h4 class="header">{{article.title}}</h4>
+                        <p class="description">{{article.description}}</p>
+                        <div class="header">
+                            <a class="rmore" href="{{article.url}}">Read More</a>
+                        </div>
+                    </div>
+                    <div class="ui buttons" ng-hide="article.disabled">
+                        <button class="ui button" ng-click="helpful(article)">Useful</button>
+                        <div class="or"></div>
+                        <button class="ui positive button" ng-click="useless(article)">NOT Useful</button>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <img class="ui fluid image" src="{{article.urlToImage}}"</img>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

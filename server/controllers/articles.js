@@ -3,20 +3,44 @@ var Customer = mongoose.model('Customer');
 var Article = mongoose.model('ArticleModel');
 var ArticleTag = mongoose.model('ArticleTagModel');
 
-
 module.exports = {
+
+	helpful: function(req,res){
+		Article.findOne({ _id: req.body.articleID }, function (err, art) {
+			if (art) {
+				art.feedback += 1;
+				art.save();
+				console.log(art);
+				res.json(art);
+			} else {
+				res.json({status: false});
+			}
+		})
+	},
+	useless: function(req,res){
+		Article.findOne({ _id: req.body.articleID }, function (err, art) {
+			if (art) {
+				art.feedback -= 1;
+				art.save();
+				console.log(art);
+				res.json(art);
+			} else {
+				res.json({status: false});
+			}
+		})
+	},
 	// Data.find( { $query: { user: req.user }, $orderby: { dateAdded: -1 } } function ( results ) {
 	index: function(req,res){
-		console.log("Articles.Index");
 		Article.find({}).sort('-publishedAt').exec(function ( err, data ) {
-			console.log("Index Data:", data);
 			res.json(data);
 		});
 	},
 	getArticle: function(req,res){
-		console.log("Articles.getArticle");
 		Article.findOne({_id: req.params.id}, function ( err, data ) {
-			console.log("getArticle Data:", data);
+<<<<<<< HEAD
+=======
+			// console.log("getArticle Data:", data);
+>>>>>>> logic
 			res.json(data);
 		});
 	},
@@ -27,7 +51,10 @@ module.exports = {
 		// newTag.save();
 		
 		
-		console.log("Received import articles request:", req.body);
+<<<<<<< HEAD
+=======
+		// console.log("Received import articles request:", req.body);
+>>>>>>> logic
 		var request = require('request');
 		
 		request({url: 'https://newsapi.org/v1/articles?source=al-jazeera-english&sortBy=latest&apiKey=13908db4e0c744b59516ee5bda85900f', json: true}, function(error, response, json) {
@@ -38,7 +65,7 @@ module.exports = {
 			var articles = json.articles;
 			for ( var i=0; i < articles.length; i++ ){
 				var article = articles[i];
-				console.log(article);
+				// console.log(article);
 				
 				// console.log(rgTags);
 				var newArticle = new Article({title: article.title, author: article.author, description: article.description,
@@ -71,7 +98,7 @@ module.exports = {
 							// newTag.save();
 							var test = new ArticleTag({title:item.tag_list[j], _article: item.id});
 							test.save();
-							console.log(test);
+							// console.log(test);
 						}
 						
 					}
