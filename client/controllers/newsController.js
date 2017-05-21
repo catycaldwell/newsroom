@@ -5,16 +5,14 @@ app.controller('newsController', function($scope, newsFactory){
     var dat_news = function () {
         $scope.burton = "no mam";
         var articles = [];
-            newsFactory.getNewsFromAPI(function(response) {
-                if( response.error ) {
-                    console.log(error)
-                } else {
-                    articles = response.articles;
-                }
-                $scope.articles = articles;
-                console.log($scope.articles, "are these the articles from the factory?")
-            });
-        
+        newsFactory.getNewsFromAPI(function(response) {
+            if( response.error ) {
+                console.log(error)
+            } else {
+                articles = response.articles;
+            }
+            $scope.articles = articles;
+        }); 
     };
     dat_news();
     var dis_news = newsFactory.getNewsTest(function(response) {
