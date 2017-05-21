@@ -14,6 +14,20 @@ app.controller('newsController', function($scope, $location, newsFactory){
         }); 
     };
 
+    function bubble(arr){
+    var counter = 0;
+    for( var i = 0; i< arr.length; i++){
+        if(arr[i+1].score < arr[i].score){
+            swap(arr, i, i+1);
+            counter ++;
+        }
+    }
+    if(counter == 0){
+        return arr;
+    }
+    return bubble(arr);
+    };
+
     dat_news();
 
     $scope.addProfile = function () {
@@ -27,6 +41,13 @@ app.controller('newsController', function($scope, $location, newsFactory){
     $scope.helpful = function (article) {
         article.disabled = true;
         var bacon = article._id;
+        $scope.articles//change the score
+        for(var i = 0; i < $scope.articles.length; i++){
+            if($scope.articles[i]._id = bacon){
+                $scope.articles[i].score += 2;
+            }
+        }
+        bubble($scope.articles);
         newsFactory.helpful({bacon}, function (){
         })
     }
@@ -34,7 +55,14 @@ app.controller('newsController', function($scope, $location, newsFactory){
     $scope.useless = function (article) {
         article.disabled = true;
         var bacon = article._id;
+        for(var i = 0; i < $scope.articles.length; i++){
+            if($scope.articles[i]._id = bacon){
+                $scope.articles[i].score -= 2;
+            }
+        }
+        bubble($scope.articles);
         newsFactory.useless({bacon}, function (){
         })
     }
+
 })
