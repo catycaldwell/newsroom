@@ -43,6 +43,13 @@ module.exports = {
 				// console.log(rgTags);
 				var newArticle = new Article({title: article.title, author: article.author, description: article.description,
 					publishedAt: article.publishedAt, url: article.url, urlToImage: article.urlToImage});
+				var slug = newArticle.url;
+				var reMatches = slug.match(re);
+				// console.log( slug, reMatches);
+				
+				var rgTags = reMatches[0].split('-');
+				newArticle.tag_list = rgTags;
+				newArticle.tag_list.pop(); // get rid of garbage tag
 				newArticle.save( function ( err, item, count ) {
 					if(err)
 					{
@@ -52,21 +59,17 @@ module.exports = {
 					}
 					else
 					{
-						var slug = item.url;
-						var reMatches = slug.match(re);
-						// console.log( slug, reMatches);
 						
-						var rgTags = reMatches[0].split('-');
 						
 						// console.log(rgTags);
-						for( var j = 0; j < rgTags.length - 1; j++ )
+						for( var j = 0; j < item.tag_list.length; j++ )
 						{
 							// console.log(rgTags[j]);
-							console.log("Adding " + rgTags[j] + " to ArticleID " + item._id);
+							console.log("Adding " + item.tag_list[j] + " to ArticleID " + item._id);
 							// var newTag = new ArticleTag({_article: item._id, title: rgTags[j] });
 							// console.log(newTag, item._id);
 							// newTag.save();
-							var test = new ArticleTag({title:rgTags[j], _article: item.id});
+							var test = new ArticleTag({title:item.tag_list[j], _article: item.id});
 							test.save();
 							console.log(test);
 						}

@@ -49,7 +49,7 @@ module.exports = {
 			}
 			else
 			{
-				res.json(tag);
+				res.json(topic);
 			}
 		});
 	},
