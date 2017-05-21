@@ -10,24 +10,32 @@
         })
     ;
 </script>
-<div class="ui raised padded text container segment" ng-controller="newsController">
-    <h2 class="ui blue image header">
-        Create a new Customer Profile
-    </h2>
-    <div class="ui negative message">
-        <i class="close icon"></i>
-        <p ng-repeat="error in errors track by $index">{{error}}</p>
+<div class="ui container">
+    <div class="ui menu" ng-controller='usersController'>
+        <img class "header item" style="height: 40px; width: 40px" src="images/fakelogo.jpg" alt="smarty pants briefs doodle">
+        <a class="item" href="#!/survey">Survey</a>
+        <a class="item" href="#!/brief">To the Briefs!</a>
+        <a class="floated right item" ng-click='logOut()'>Log Out</a>
+    </div>   
+    <div class="ui raised padded text container segment" ng-controller="newsController">
+        <h2 class="ui blue image header">
+            Create a new Customer Profile
+        </h2>
+        <div class="ui negative message" ng-if="messages.length > 0">
+            <i class="close icon"></i>
+            <p ng-repeat="error in errors track by $index">{{error}}</p>
+        </div>
+        <form class="ui medium form segment" ng-submit="addProfile(newProfile)">
+            <div class="field">
+                <input type="text" ng-model="newProfile.title" placeholder="Brief Title (Customer's Job Title)">
+            </div>
+            <div class="field">
+                <textarea ng-model="newProfile.role" placeholder="Short description of role and responsibilities"></textarea>
+            </div>
+            <div class="field">
+                <input type="text" ng-model="newProfile.needs" placeholder="Top 3 needs. Seperate with comma.">
+            </div>
+            <input type="submit" class="ui fluid blue button">
+        </form>
     </div>
-    <form class="ui medium form segment" ng-submit="addProfile(newProfile)">
-        <div class="field">
-            <input type="text" ng-model="newProfile.title" placeholder="Brief Title (Customer's Job Title)">
-        </div>
-        <div class="field">
-            <textarea ng-model="newProfile.role" placeholder="Short description of role and responsibilities"></textarea>
-        </div>
-        <div class="field">
-            <input type="text" ng-model="newProfile.needs" placeholder="Top 3 needs. Seperate with comma.">
-        </div>
-        <input type="submit" class="ui fluid blue button">
-    </form>
 </div>

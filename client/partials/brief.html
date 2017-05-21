@@ -6,7 +6,13 @@
         margin-top:15px;
     }
 </style>
-<div class="ui center aligned container" ng-controller="newsController">     
+<div class="ui center aligned container" ng-controller="newsController">
+    <div class="ui menu" ng-controller='usersController'>
+        <img class "header item" style="height: 40px; width: 40px" src="images/fakelogo.jpg" alt="smarty pants briefs doodle">
+        <a class="item" href="#!/survey">Survey</a>
+        <a class="item" href="#!/add">Add Brief Book</a>
+        <a class="floated right item" ng-click='logOut()'>Log Out</a>
+    </div>     
     <div class="ui right vertical sidebar">
         <div class="ui cards">
             <div class="ui card">
@@ -65,7 +71,7 @@
         </div>
     </div>
     <div class="pusher ui grid">
-        <div class="ui container twelve wide column">
+        <div class="ui container fourteen wide column">
             <div class="ui segment">
                 <div class="ui four small cards">
                     <div class="green card">

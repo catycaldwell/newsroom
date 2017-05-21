@@ -7,8 +7,13 @@
     }
 </style>
 <div class="ui center aligned container" ng-controller="newsController">     
-    <div class="pusher ui grid">
-        <div class="ui container fourteen wide column">
+        <div class="ui container">
+            <div class="ui menu" ng-controller='usersController'>
+                <img class "header item" style="height: 40px; width: 40px" src="images/fakelogo.jpg" alt="smarty pants briefs doodle">
+                <a class="item" href="#!/brief">View Briefs</a>
+                <a class="item" href="#!/add">Add Brief Book</a>
+                <a class="floated right item" ng-click='logOut()'>Log Out</a>
+            </div>   
             <div class="ui segment">
                 <h1>Today's brief (5/21/17)</h1>
                 <h2>Survey Response</h2>
@@ -34,5 +39,4 @@
                 </div>
             </div>
         </div>
-    </div>
 </div>

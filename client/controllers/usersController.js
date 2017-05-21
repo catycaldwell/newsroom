@@ -35,14 +35,12 @@ app.controller("usersController", ["$scope", "$location", "userFactory", functio
             }
             if ($scope.errors.length == 0) {
                 $scope.user = newUser;
-                console.log($scope.user);
                 userFactory.register(newUser, function (data) {
                     if (data.data.status == false) { // is thereany other reason this would return false?
                         $scope.errors.push("Email address is already in use");
                     }
                     else {
                         $scope.newUser = {};
-                        console.log("redirecting with dash")
                         $location.path('/dash');
                     }
                 })
@@ -64,6 +62,5 @@ app.controller("usersController", ["$scope", "$location", "userFactory", functio
                 }
             })
         }
-        console.log($scope.user)
     }
 }])

@@ -37,10 +37,6 @@ module.exports = {
 	},
 	getArticle: function(req,res){
 		Article.findOne({_id: req.params.id}, function ( err, data ) {
-<<<<<<< HEAD
-=======
-			// console.log("getArticle Data:", data);
->>>>>>> logic
 			res.json(data);
 		});
 	},
@@ -50,11 +46,6 @@ module.exports = {
 		// var newTag = new ArticleTag({_article: "592176dc6beb396ad0cedc44", title: "burton", poop:"seagul" });
 		// newTag.save();
 		
-		
-<<<<<<< HEAD
-=======
-		// console.log("Received import articles request:", req.body);
->>>>>>> logic
 		var request = require('request');
 		
 		request({url: 'https://newsapi.org/v1/articles?source=al-jazeera-english&sortBy=latest&apiKey=13908db4e0c744b59516ee5bda85900f', json: true}, function(error, response, json) {
