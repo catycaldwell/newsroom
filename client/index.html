@@ -4,13 +4,21 @@
     <meta charset="utf-8">
     <title>Welcome to Curate!</title>
 
+    <style>
+        #wrapper{
+            padding: 0px;
+        }
+    </style>
+
     <!-- Semantic-ui -->
     <link rel='stylesheet' href="semantic-ui/dist/semantic.css">
+    <link rel='stylesheet' href="bootstrap/dist/css/bootstrap.min.css">
     <!-- <link rel='stylesheet' href="bootstrap-social/bootstrap-social.css"> -->
 
     <!-- jQuery needs to be local install not CDN -->
     <script src="jquery/dist/jquery.min.js"></script>
     <script src="semantic-ui/dist/semantic.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- Angular -->
     <script src="angular/angular.js"></script>
     <script src="angular-route/angular-route.js"></script>
@@ -25,7 +33,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div ng-view class="container-fluid" id="wrapper">
         <div ng-view>
         </div>
     </div>
