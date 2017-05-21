@@ -51,10 +51,10 @@ app.controller("usersController", ["$scope", "$location", "userFactory", functio
     };
     $scope.login = function (user) {
         $scope.errors = [];
-        console.log(user);
         if (!$scope.user || !$scope.user.password || !$scope.user.email) {
             $scope.errors.push("All fields required");
         } else {
+            $scope.user = user;
             userFactory.login(user, function (data) {
                 if (data.data.status == false) {
                     $scope.errors.push("Incorrect login info");
@@ -64,6 +64,6 @@ app.controller("usersController", ["$scope", "$location", "userFactory", functio
                 }
             })
         }
-        console.log($scope.errors);
+        console.log($scope.user)
     }
 }])

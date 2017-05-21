@@ -24,17 +24,17 @@
         </div>
         <p ng-repeat="error in errors track by $index">{{error}}</p>
     </div>
-    <form class="ui medium form segment" ng-submit="login(newUser)">
+    <form class="ui medium form segment" ng-submit="login(user)">
         <div class="field">
             <div class="ui left icon input">
                 <i class="mail outline icon"></i>
-                <input type="email" ng-model="newUser.email" placeholder="Email">
+                <input type="email" ng-model="user.email" placeholder="Email">
             </div>
         </div>
         <div class="field">
             <div class="ui left icon input">
                 <i class="lock icon"></i>
-                <input type="password" ng-model="newUser.password" placeholder="Password">
+                <input type="password" ng-model="user.password" placeholder="Password">
             </div>
         </div>
         <input type="submit" class="ui fluid blue button">

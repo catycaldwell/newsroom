@@ -19,8 +19,7 @@ app.factory('newsFactory', function($http, $location, $route){
         .then((response) => response.json())
         .then(function(data) {
             // if certain tag constraints are met, add specific articles to our database
-
-            console.log(data);
+            callback(data)
         })
         .catch(function(error) {
             console.log("your api call didnt work");
